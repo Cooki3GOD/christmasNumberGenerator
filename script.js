@@ -13,20 +13,20 @@ for(let i = 0; i < listOfNumbers.length; i++) {
 }
 
 function getRandomNumber() {
-    if(listOfNumbers.length == 0) {
+    if(usedNumbers.length == 30) {
         display.innerText = "Nie ma liczb do wylosowania!";
     }
-
-    let number;
-    
-    do {
-        let index = Math.floor(Math.random() * numbers.length);
-        number = numbers[index];
-        listOfNumbers[index].remove();
+    else {
+        let number;
+        do {
+            let index = Math.floor(Math.random() * numbers.length);
+            number = numbers[index];
+            listOfNumbers[index].remove();
+        }
+        while(usedNumbers.includes(number) && listOfNumbers.length != 0);
+        usedNumbers.push(number);
+        display.innerText  = number;
     }
-    while(usedNumbers.includes(number) && listOfNumbers.length != 0);
-    usedNumbers.push(number);
-    display.innerText  = number;
 }
 
 button.addEventListener("click", getRandomNumber);
